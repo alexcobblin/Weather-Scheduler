@@ -13,12 +13,10 @@ export default function DashboardPage() {
   return (
     <>
       <Header />
-      <LogoutButton />
       <main>
+        <EventList />
         <CreateEventButton openModal={() => setIsModalOpen(true)} />
         <CreateEventForm open={isModalOpen} onClose={() => setIsModalOpen(false)} />
-        <ClearEventsButton />
-        <EventList />
       </main>
     </>
   );
