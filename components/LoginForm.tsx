@@ -26,9 +26,12 @@ export default function LoginForm() {
   };
 
   return (
+    <div className="login-container">
+    <div className="login-box">
+    <h4>Log In / Register</h4>
     <form onSubmit={handleSubmit}>
       <label>
-        Username:
+        <div>Username:</div>
         <input
           type="text"
           value={username}
@@ -38,7 +41,7 @@ export default function LoginForm() {
       </label>
       <br />
       <label>
-        Password:
+        <div><p>Password:</p></div>
         <input
           type="password"
           value={password}
@@ -47,8 +50,10 @@ export default function LoginForm() {
         />
       </label>
       <br />
-      <button type="submit">Login / Register</button>
+      <button type="submit" style={{ display: 'block', margin: '0.5rem auto 0 auto'}}>Go!</button>
       {error && <p style={{ color: 'red' }}>{error}</p>}
     </form>
+    </div>
+    </div>
   );
 }

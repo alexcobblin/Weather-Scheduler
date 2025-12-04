@@ -43,12 +43,18 @@ export default function CreateEventForm({
         sx={{
           backgroundColor: 'white',
           padding: 4,
-          width: 400,
-          margin: '100px auto',
+          width: "20rem",
+          height:"25rem",
+          margin: '10vh auto',
           borderRadius: 2,
+          overflowY:"auto",
+          fontFamily: "'Quicksand', sans-serif",
+          "& *": {
+            fontFamily: "'Quicksand', sans-serif",
+          },
         }}
       >
-        <Typography variant="h6" gutterBottom>
+        <Typography variant="h6">
           Create Event
         </Typography>
         <form onSubmit={handleSubmit}>
@@ -79,7 +85,7 @@ export default function CreateEventForm({
             margin="normal"
           />
           <TextField
-            label="Location / Zip Code"
+            label="Event Zip Code"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             fullWidth
@@ -93,7 +99,7 @@ export default function CreateEventForm({
                 onChange={(e) => setIsOutside(e.target.checked)}
               />
             }
-            label="Is Outside?"
+            label="Event is Outside"
           />
           <Button type="submit" variant="contained" color="primary" fullWidth>
             Submit

@@ -10,28 +10,32 @@ export default function EventList() {
       const data = await getEvents();
       setEvents(data);
     }
-
     fetchEvents();
   }, []);
 
   if (events.length === 0) {
-    return <p>No events scheduled.</p>;
+    return <p className="no-events-text">No events scheduled.</p>;
   }
 
   return (
-    <div>
-      <h2>Scheduled Events:</h2>
-      <ul>
-        {events.map((event, index) => (
-          <li key={index}>
-            <strong>{event.eventName}</strong><br />
-            {event.startTime} - {event.endTime} <br />
-            Location: {event.location} <br />
-            Outside: {event.isOutside ? 'Yes' : 'No'}
-            <hr />
-          </li>
-        ))}
-      </ul>
+    <div className="events-container">
+      {events.map((event, index) => (
+        <div key={index} className="event-card">
+          <h3 className="event-title">{event.eventName}</h3>
+
+          <p className="event-line">
+            <span className="event-label">Time:</span> {event.startTime} – {event.endTime}
+          </p>
+
+          <p className="event-line">
+            <span className="event-label">Location:</span> {event.location}
+          </p>
+
+          <p className="event-line">
+            <span className="event-label">Outside:</span> {event.isOutside ? "Yes" : "No"}
+          </p>
+        </div>
+      ))}
     </div>
   );
 }
