@@ -1,6 +1,6 @@
 'use client';
+import { logoutAction } from '@/lib/logout';
 import { useRouter } from 'next/navigation';
-import { Button } from '@mui/material';
 import styled from 'styled-components';
 
 const StyledLogoutButton = styled.button`
@@ -18,16 +18,11 @@ const StyledLogoutButton = styled.button`
 `;
 
 export default function LogoutButton() {
-  const router = useRouter();
-
-  const handleLogout = () => {
-    localStorage.removeItem('user'); // future: clear auth token too
-    router.push('/login');
-  };
-
   return (
-    <StyledLogoutButton onClick={handleLogout}>
-      Log Out
-    </StyledLogoutButton>
+    <form action={logoutAction}>
+      <StyledLogoutButton type="submit">
+        Log Out
+      </StyledLogoutButton>
+    </form>
   );
 }
