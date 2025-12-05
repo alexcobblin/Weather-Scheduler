@@ -2,7 +2,7 @@
 
 const API_KEY = process.env.API_KEY;
 
-export default async function getData(city: string, date: string) {
+export default async function getData(city: string) {
   if (!API_KEY) {
     throw new Error("Missing API_KEY.");
   }
