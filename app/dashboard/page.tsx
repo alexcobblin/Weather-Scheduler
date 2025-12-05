@@ -1,32 +1,17 @@
-'use client';
-import Header from '@/components/Header';
-import { useState } from 'react';
-import CreateEventForm from '@/components/CreateEventForm';
-import CreateEventButton from '@/components/CreateEventButton';
-import LogoutButton from '@/components/LogoutButton';
-import EventList from '@/components/EventList';
-import ClearEventsButton from '@/components/ClearEventsButton';
-import styled from 'styled-components';
+import { auth } from "@/auth"
+import { redirect } from "next/navigation";
+import Dashboard from '@/components/Dashboard';
 
-const StyledMain = styled.main`
-  background-color: #d0ecff;
-  height: 90vh;
-  font-family: 'Quicksand', sans-serif;
-  color: #1b2a49;
-  padding-bottom: 3rem;
-`;
+export default async function DashboardPage() {
+  const session = await auth();
 
-export default function DashboardPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  if (!session) {
+      redirect("/");
+  }
 
   return (
-    <>
-      <Header />
-      <StyledMain>
-        <EventList />
-        <CreateEventButton openModal={() => setIsModalOpen(true)} />
-        <CreateEventForm open={isModalOpen} onClose={() => setIsModalOpen(false)} />
-      </StyledMain>
-    </>
+    <Dashboard />
   );
+
 }
+
