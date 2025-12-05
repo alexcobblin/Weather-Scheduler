@@ -33,6 +33,7 @@ export async function POST(req: Request) {
         endTime: data.endTime,
         city: data.city,
         isOutside: data.isOutside,
+        weatherWarning: data.weatherWarning,
         userId: session.user.email,
         createdAt: new Date(),
     };

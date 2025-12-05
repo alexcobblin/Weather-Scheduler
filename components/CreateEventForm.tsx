@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { Modal, Box, Typography, TextField, Button, Checkbox, FormControlLabel} from '@mui/material';
 import { createEvent } from '@/lib/events';
+import getData from '@/lib/getData';
+import { evaluateWeatherForEvent } from '@/lib/evaluateWeatherForEvent';
 import styled from 'styled-components';
 
 const StyledModal = styled.div`
@@ -36,25 +38,38 @@ export default function CreateEventForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    await createEvent({
+  
+    const data = await getData(city);
+  
+    const weatherWarning = evaluateWeatherForEvent(
+      data,
+      startTime,
+      endTime,
+      isOutside
+    );
+  
+    const payload = {
       eventName,
       startTime,
       endTime,
       city,
       isOutside,
-    });
-
-    // reset form
+      weatherWarning,
+    };
+  
+    await createEvent(payload);
+  
+    // reset
     onCreated();
     setEventName('');
     setStartTime('');
     setEndTime('');
     setCity('');
     setIsOutside(false);
-
+  
     onClose();
   };
+  
 
   return (
     <Modal open={open} onClose={onClose}>
