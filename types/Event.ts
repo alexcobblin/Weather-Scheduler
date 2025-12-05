@@ -4,4 +4,5 @@ export type Event = {
     endTime: string;
     city: string;
     isOutside: boolean;
+    weatherWarning?: string;
 };

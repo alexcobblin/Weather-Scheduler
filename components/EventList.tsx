@@ -17,6 +17,7 @@ export const EventsContainer = styled.div`
   align-items: center;
   gap: 1.5rem;
   padding: 2rem 1rem;
+  padding-bottom: 15vh;
 `;
 
 export const EventCard = styled.div`
@@ -47,6 +48,16 @@ export const EventLabel = styled.span`
   color: #1e3a8a;
 `;
 
+export const WeatherWarning = styled.div`
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 3%;
+  white-space: pre-line;
+  display: flex;
+  align-items: center;
+  gap: 3%;
+`;
+
 export default function EventList({ refreshSignal }: { refreshSignal: number }) {
   const [events, setEvents] = useState<Event[]>([]);
 
@@ -56,7 +67,7 @@ export default function EventList({ refreshSignal }: { refreshSignal: number }) 
       setEvents(data);
     }
     fetchEvents();
-  }, [refreshSignal]); // <-- refetch when refreshSignal changes
+  }, [refreshSignal]);
 
   if (events.length === 0) {
     return <NoEventsText>No events scheduled.</NoEventsText>;
@@ -79,9 +90,14 @@ export default function EventList({ refreshSignal }: { refreshSignal: number }) 
           <EventLine>
             <EventLabel>Outside:</EventLabel> {event.isOutside ? "Yes" : "No"}
           </EventLine>
+
+          {event.weatherWarning && (
+            <WeatherWarning>
+              {event.weatherWarning}
+            </WeatherWarning>
+          )}
         </EventCard>
       ))}
     </EventsContainer>
   );
 }
-
