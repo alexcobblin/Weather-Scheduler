@@ -7,6 +7,10 @@ export default async function getData(city: string) {
     throw new Error("Missing API_KEY.");
   }
 
+  if (!city) {
+    throw new Error("City is required.");
+  }
+
   const url = `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${encodeURIComponent(
     city
   )}&days=1&aqi=no&alerts=no`;
