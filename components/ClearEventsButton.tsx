@@ -19,7 +19,7 @@ const StyledClearButton = styled.button`
   cursor: pointer;
   font-family: 'Quicksand', sans-serif;
 
-  &:hover {
+  &:hover { /* set color while hovering over button */
     background-color: #3459c0;
   }
 `;

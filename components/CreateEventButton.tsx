@@ -1,3 +1,5 @@
+/* button uses to let user make events, full file by Rohan except minor styling by Alex */
+
 'use client';
 import { Button } from '@mui/material';
 import styled from 'styled-components';
@@ -12,7 +14,7 @@ const StyledCreateButton = styled.button`
   cursor: pointer;
   font-family: 'Quicksand', sans-serif;
 
-  &:hover {
+  &:hover { /* set color when hovering button */
     background-color: #3459c0;
   }
 `;
