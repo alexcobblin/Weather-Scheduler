@@ -8,7 +8,7 @@ Isaac sections commented, all else is Rohan
 
 'use client';
 import { useState } from 'react';
-import { Modal, Box, Typography, TextField, Button, Checkbox, FormControlLabel} from '@mui/material';
+import { Modal, Typography, TextField, Button, Checkbox, FormControlLabel} from '@mui/material';
 import { createEvent } from '@/lib/events';
 import getData from '@/lib/getData';
 import { evaluateWeatherForEvent } from '@/lib/evaluateWeatherForEvent';
@@ -52,7 +52,7 @@ export default function CreateEventForm({
     
     const data = await getData(city);
   
-    /* payload and weatherWarning by Isaac*/
+    /* props and weatherWarning by Isaac*/
     const weatherWarning = evaluateWeatherForEvent(
       data,
       startTime,
@@ -60,7 +60,7 @@ export default function CreateEventForm({
       isOutside
     );
   
-    const payload = {
+    const props = {
       eventName,
       startTime,
       endTime,
@@ -68,8 +68,9 @@ export default function CreateEventForm({
       isOutside,
       weatherWarning,
     };
-  
-    await createEvent(payload);
+    
+    /* call createEvent function to updated event list by Isaac*/
+    await createEvent(props);
   
     // reset fields and close modal
     onCreated();

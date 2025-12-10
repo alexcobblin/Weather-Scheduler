@@ -2,8 +2,10 @@
 Format for Edit button
 
 Made by Alex
+Minor modularization hotfix by moving edit button prop to types folder by Isaac
 */
 import styled from 'styled-components';
+import { EditEventButtonProps } from '@/types/EditEventButtonProps';
 
 const EditButton = styled.button`
   position: absolute;
@@ -25,11 +27,6 @@ const EditButton = styled.button`
     background-color: #15803d;
   }
 `;
-
-interface EditEventButtonProps {
-  eventId: string;
-  onEdit: () => void;
-}
 
 export default function EditEventButton({ eventId, onEdit }: EditEventButtonProps) {
   return (

@@ -1,3 +1,7 @@
+/*
+Create, get, and clear event made by Isaac
+*/
+
 import { EventProps } from "@/types/EventProps";
 
 export async function createEvent(event: EventProps) {
@@ -24,6 +28,7 @@ export async function clearEvents() {
         credentials: "include",
     });
 }
+
 /* delete event and update event logic added by Alex */
 export async function deleteEvent(eventId: string): Promise<void> {
     const response = await fetch("/api/events", {

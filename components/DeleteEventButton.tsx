@@ -1,9 +1,11 @@
 /*
 Format for delete button
 Made by Alex
+Minor modularization hotfix by moving delete button prop to types folder by Isaac
 */
 import styled from 'styled-components';
 import { deleteEvent } from '@/lib/events';
+import { DeleteEventButtonProps } from '@/types/DeleteEventButtonProps';
 
 const DeleteButton = styled.button`
   position: absolute;
@@ -26,12 +28,6 @@ const DeleteButton = styled.button`
     background-color: #1e40af;
   }
 `;
-
-
-interface DeleteEventButtonProps {
-  eventId: string;
-  onDelete: (eventId: string) => void;
-}
 
 export default function DeleteEventButton({ eventId, onDelete }: DeleteEventButtonProps) {
   const handleDelete = async () => {
