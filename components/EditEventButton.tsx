@@ -30,7 +30,7 @@ interface EditEventButtonProps {
   eventId: string;
   onEdit: () => void;
 }
-
+// allows for recieving an event triggering onEdit 
 export default function EditEventButton({ eventId, onEdit }: EditEventButtonProps) {
   return (
     <EditButton onClick={onEdit}>

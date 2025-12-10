@@ -32,14 +32,14 @@ interface DeleteEventButtonProps {
   eventId: string;
   onDelete: (eventId: string) => void;
 }
-
+// helper function to allow for deleting by ID
 export default function DeleteEventButton({ eventId, onDelete }: DeleteEventButtonProps) {
   const handleDelete = async () => {
     await deleteEvent(eventId);
     onDelete(eventId);
   };
 
-  return (
+  return ( //button calls helper on click
     <DeleteButton onClick={handleDelete}>
       ×
     </DeleteButton>

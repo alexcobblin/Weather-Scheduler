@@ -82,6 +82,7 @@ export const EventLabel = styled.span`
   color: #1e3a8a;
 `;
 /* End of styling by Alex */
+
 /* weather warning by Isaac */
 export const WeatherWarning = styled.div`
   font-size: 16px;
@@ -103,6 +104,7 @@ useEffect(() => {
     const data = await getEvents();
 
     // Sort by startTime ("HH:mm"), done by Alex
+    // Calculates what is earlier by counting minutes. Runs each time getEvents is called
     const sorted = [...data].sort((a, b) => {
       const [hA, mA] = a.startTime.split(':').map(Number);
       const [hB, mB] = b.startTime.split(':').map(Number);
@@ -124,6 +126,7 @@ useEffect(() => {
   };
 
   /* edit button and associated functionality by Alex */
+  //same as above used specifically for editing
   const handleEventPlacement = async () => {
     const data = await getEvents();
     const sorted = [...data].sort((a, b) => {
@@ -151,6 +154,8 @@ useEffect(() => {
             {event._id && (
               /* both buttons added by Alex */
               <>
+              {/* when onDelete or onEdit are triggered by a click
+               they activate their helper functions*/}
                 <DeleteEventButton
                   eventId={event._id} 
                   onDelete={handleDeleteEvent}
