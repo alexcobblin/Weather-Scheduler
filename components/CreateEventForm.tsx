@@ -46,41 +46,48 @@ export default function CreateEventForm({
   const [city, setCity] = useState(''); /* all city references added by Isaac */
   const [isOutside, setIsOutside] = useState(false);
 
-  /* logic from our lab, run code below and prevent refresh when form submitted */
+  // Entire function logic made by Isaac
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    // Added logic for bad city input by Isaac
+    try {
+      // data call by Isaac
+      const data = await getData(city);
     
-    const data = await getData(city);
-  
-    /* props and weatherWarning by Isaac*/
-    const weatherWarning = evaluateWeatherForEvent(
-      data,
-      startTime,
-      endTime,
-      isOutside
-    );
-  
-    const props = {
-      eventName,
-      startTime,
-      endTime,
-      city,
-      isOutside,
-      weatherWarning,
-    };
+      /* props and weatherWarning by Isaac*/
+      const weatherWarning = evaluateWeatherForEvent(
+        data,
+        startTime,
+        endTime,
+        isOutside
+      );
     
-    /* call createEvent function to updated event list by Isaac*/
-    await createEvent(props);
-  
-    // reset fields and close modal
-    onCreated();
-    setEventName('');
-    setStartTime('');
-    setEndTime('');
-    setCity('');
-    setIsOutside(false);
-  
-    onClose();
+      const props = {
+        eventName,
+        startTime,
+        endTime,
+        city,
+        isOutside,
+        weatherWarning,
+      };
+      
+      /* call createEvent function to updated event list by Isaac*/
+      await createEvent(props);
+    
+      // reset fields and close modal
+      onCreated();
+      setEventName('');
+      setStartTime('');
+      setEndTime('');
+      setCity('');
+      setIsOutside(false);
+    
+      onClose();
+    } catch (err) {
+      console.error(err);
+      setCity('');
+      alert("City not found. Please enter a valid city.");
+    }
   };
   
   /* style comments will only be shown for first instance of each use */
